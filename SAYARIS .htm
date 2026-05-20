@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Shayari World</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#050505,#0d0d0d,#151515);
+    color:white;
+    overflow-x:hidden;
+    text-align:center;
+}
+
+/* Soft Animated Background */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:200%;
+    height:200%;
+    background:
+    radial-gradient(circle,#ff4d6d11 1px,transparent 1px);
+    background-size:45px 45px;
+    animation:moveBg 30s linear infinite;
+    z-index:-1;
+}
+
+@keyframes moveBg{
+    from{
+        transform:translate(0,0);
+    }
+    to{
+        transform:translate(-80px,-80px);
+    }
+}
+
+/* Floating Glow */
+
+.glow{
+    position:fixed;
+    width:300px;
+    height:300px;
+    background:#ff4d6d10;
+    border-radius:50%;
+    filter:blur(90px);
+    z-index:-1;
+    animation:floatGlow 10s infinite alternate;
+}
+
+.glow1{
+    top:-50px;
+    left:-50px;
+}
+
+.glow2{
+    bottom:-50px;
+    right:-50px;
+}
+
+@keyframes floatGlow{
+    from{
+        transform:translateY(0px);
+    }
+    to{
+        transform:translateY(40px);
+    }
+}
+
+/* Header */
+
+header{
+    padding:40px 20px 20px;
+}
+
+.main-title{
+    font-family:'Great Vibes',cursive;
+    font-size:70px;
+    color:#ff4d6d;
+    text-shadow:0 0 12px #ff4d6d55;
+}
+
+.tagline{
+    color:#999;
+    letter-spacing:3px;
+    margin-top:10px;
+}
+
+/* Click Topic */
+
+.topic-text{
+    margin-top:15px;
+    color:#bbb;
+    font-size:18px;
+    animation:blink 2s infinite;
+}
+
+@keyframes blink{
+    50%{
+        opacity:0.4;
+    }
+}
+
+/* Search */
+
+.search-box{
+    margin:25px auto;
+    width:90%;
+    max-width:500px;
+}
+
+.search-box input{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:30px;
+    outline:none;
+    background:#181818;
+    color:white;
+    font-size:16px;
+    border:1px solid #ff4d6d33;
+}
+
+/* Bubble Buttons */
+
+.buttons{
+    margin-top:30px;
+}
+
+.option{
+    position:relative;
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    width:140px;
+    height:140px;
+    margin:20px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,77,109,0.3);
+    cursor:pointer;
+    transition:0.4s;
+    overflow:hidden;
+    backdrop-filter:blur(8px);
+    animation:float 4s ease-in-out infinite;
+}
+
+.option:nth-child(2){
+    animation-delay:1s;
+}
+
+.option:nth-child(3){
+    animation-delay:2s;
+}
+
+.option span{
+    z-index:2;
+    font-size:22px;
+}
+
+.option::before{
+    content:"";
+    position:absolute;
+    width:200%;
+    height:200%;
+    background:radial-gradient(circle,#ff4d6d33,transparent 60%);
+    animation:rotate 6s linear infinite;
+}
+
+.option:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 20px #ff4d6d33;
+}
+
+@keyframes rotate{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+/* Shayari Section */
+
+.shayari-box{
+    display:none;
+    padding:30px 20px;
+    animation:fade 0.7s ease;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Cards */
+
+.shayari-card{
+    max-width:760px;
+    margin:25px auto;
+    padding:30px;
+    border-radius:25px;
+    background:rgba(255,255,255,0.03);
+    backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,0.05);
+    box-shadow:0 0 15px rgba(255,77,109,0.08);
+    transition:0.4s;
+}
+
+.shayari-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 0 20px rgba(255,77,109,0.18);
+}
+
+.shayari-text{
+    font-family:'Great Vibes',cursive;
+    font-size:34px;
+    line-height:58px;
+    color:#f1f1f1;
+}
+
+/* Buttons */
+
+.card-buttons{
+    margin-top:20px;
+}
+
+.copy-btn,
+.share-btn{
+    padding:10px 20px;
+    margin:8px;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+    font-size:15px;
+    transition:0.3s;
+}
+
+.copy-btn{
+    background:#ff4d6d;
+    color:white;
+}
+
+.share-btn{
+    background:#25D366;
+    color:white;
+}
+
+.copy-btn:hover,
+.share-btn:hover{
+    transform:scale(1.05);
+}
+
+/* Footer */
+
+footer{
+    margin-top:50px;
+    padding:20px;
+    color:#777;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.main-title{
+    font-size:52px;
+}
+
+.option{
+    width:110px;
+    height:110px;
+}
+
+.option span{
+    font-size:18px;
+}
+
+.shayari-text{
+    font-size:27px;
+    line-height:45px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
+
+<header>
+
+<h1 class="main-title">Shayari World</h1>
+
+<p class="tagline">Feel Every Word...</p>
+
+<p class="topic-text">✨ Click On Floating Topics ✨</p>
+
+</header>
+
+<!-- Search -->
+
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="Search Shayari..." onkeyup="searchShayari()">
+</div>
+
+<!-- Bubble Topics -->
+
+<div class="buttons">
+
+<div onclick="showShayari('broken')" class="option">
+<span>💔 Broken</span>
+</div>
+
+<div onclick="showShayari('motivational')" class="option">
+<span>🔥 Motivation</span>
+</div>
+
+<div onclick="showShayari('love')" class="option">
+<span>❤️ Love</span>
+</div>
+
+</div>
+
+<!-- Broken -->
+
+<div id="broken" class="shayari-box">
+
+<div class="shayari-card">
+
+<div class="shayari-text">
+अपनी निगाहों को एक चेहरे पर पाबंद रखिए,<br>
+हर सूरत पर लुट जाना तो तौहीन-ए-वफ़ा होती है।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<div class="shayari-card">
+
+<div class="shayari-text">
+खेल खेल में वो हमारे दिल से खेल गए,<br>
+हम मोहब्बत समझकर हर एक दर्द झेल गए।<br><br>
+
+आज तन्हाई में खुद से बस यही पूछते हैं,<br>
+क्यों वो हमें इस कदर अकेला छोड़ गए।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+
+<div class="shayari-card">
+
+<div class="shayari-text">
+पत्थर की इस दुनिया में दिल कांच का लेकर आए थे,<br>
+हम नादान थे जो उनकी झूठी वफ़ा पर मुस्कुराए थे।<br><br>
+
+वो छोड़ गए हमें उस मोड़ पर तन्हा अकेला,<br>
+जहाँ सिर्फ उनकी यादों के गहरे साए थे।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+
+<div class="shayari-card">
+
+<div class="shayari-text">
+कितना अजीब अपनी मोहब्बत का सफर था,<br>
+मंजिल भी सामने थी और रास्ता भी कटा हुआ था।<br><br>
+
+वो रोए तो सही मगर किसी और की बाहों में,<br>
+हमारा कसूर सिर्फ इतना था कि हमनें उन्हें चाहा था।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+
+<!-- 1 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+मोहब्बत की अदालत में हमारा कसूर क्या था,<br>
+उन्हें चाहा हद से ज्यादा क्या यही गुनाह था?<br><br>
+
+वो छोड़ गए हमें बीच राह में तन्हा तन्हा,<br>
+शायद हमारी तकदीर में ही दर्द का लिखा था।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 2 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+कांच का तोहफा समझकर मेरा दिल तोड़ दिया,<br>
+हँसते हुए चेहरे को आंसुओं के मोड़ पर छोड़ दिया।<br><br>
+
+हम तो ज़िन्दगी मानने लगे थे उन्हें अपनी,<br>
+पर उन्होंने एक पल में हमसे नाता तोड़ दिया।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 3 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+अब रातों को जागना ही मेरा नसीब बन गया,<br>
+तेरी यादों का साया इस दिल के करीब बन गया।<br><br>
+
+ज़ख्म जो दिए हैं तूने इस बेबस रूह को,<br>
+वो ज़ख्म ही अब मेरा सबसे बड़ा रकीब बन गया।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 4 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+वफ़ा का सिला उन्होंने कुछ इस तरह दिया,<br>
+भरी महफ़िल में हमको तनहा कर दिया।<br><br>
+
+हम तो मर मिटने को तैयार थे उनकी एक मुस्कान पर,<br>
+पर उन्होंने अपनी बेरुखी से हमें ज़िंदा ही मार दिया।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 5 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+झूठे वादों की इमारत एक पल में ढह गई,<br>
+प्यार की वो अधूरी कहानी अधूरी ही रह गई।<br><br>
+
+आँखों में जो सजे थे कभी हसीं ख्वाब उनके,<br>
+वो आज बनकर आंसू गालों से बह गई।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 6 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+दिल टूटने की आवाज़ इस ज़माने ने न सुनी,<br>
+हमने खुद ही अपनी तबाही की दास्तां चुनी।<br><br>
+
+वो तो खुश हैं अपनी नई दुनिया में मशरूफ होकर,<br>
+यहाँ हमारी हर एक सांस उनके गम में बुनी।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 7 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+उम्मीद की शमां this दिल में अब जलती नहीं,<br>
+तेरी यादों के बिना अब कोई शाम ढलती नहीं।<br><br>
+
+कर गए हो बेवफाई कुछ इस अंदाज़ से तुम,<br>
+कि अब किसी और से मोहब्बत की बात चलती नहीं।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 8 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+अकेलेपन से अब हमने यारी कर ली है,<br>
+तेरी यादों को भुलाने की तैयारी कर ली है।<br><br>
+
+सोचा था कि तुम लौट कर आओगे एक दिन,<br>
+पर अब हमने इस तन्हाई से वफ़ादारी कर ली है।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 9 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+खेलना ही था तो किसी खिलौने से खेल लेते,<br>
+हम तो तुम्हारी दी हुई हर एक चोट झेल लेते।<br><br>
+
+कम से कम इस नादान दिल का मज़ाक तो न बनता,<br>
+हम हँसते-हँसते तुम्हारी नफ़रत को भी समेट लेते।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 10 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+चेहरे पर झूठी मुस्कान सजाना सीख लिया,<br>
+भीड़ में भी खुद को अकेला पाना सीख लिया।<br><br>
+
+अब नहीं शिकवा हमें तुम्हारी बेवफाई से कोई,<br>
+क्योंकि हमने दर्द में भी मुस्कुराना सीख लिया।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<div class="shayari-card">
+<div class="shayari-text">
+अजीब सी थी वो,<br>
+मुझे बदल कर खुद बदल गई...
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+</div>
+
+
+
+
+
+
+<div class="shayari-card">
+<div class="shayari-text">
+अब किसी से नाराज़गी नहीं रखते,<br>
+बस खास लोगों से दूरी बना लेते हैं...
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+</div>
+
+<div class="shayari-card">
+<div class="shayari-text">
+बहुत अंदर तक तबाही मचाता है,<br>
+वो आँसू जो आँख से बह नहीं पाता...
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+</div>
+
+</div>
+
+<!-- Motivation -->
+
+<div id="motivational" class="shayari-box">
+
+<!-- 1 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+मंजिलें उन्हीं को मिलती हैं जिनके सपनों में जान होती है,<br>
+पंखों से कुछ नहीं होता हौसलों से उड़ान होती है।<br><br>
+
+रास्ते की मुश्किलों को देखकर तुम कभी रुकना मत,<br>
+मेहनत करने वालों की ही दुनिया में पहचान होती है।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 2 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+जीत की खातिर बस दिल में ऐसा जुनून चाहिए,<br>
+जिसमें उबाल हो ऐसा ही एक खून चाहिए।<br><br>
+
+ये आसमां भी आएगा एक दिन ज़मीन पर बस,<br>
+तुम्हारे इरादों में जीत की वो गूंज चाहिए।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 3 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+सामने हो मंजिल तो कभी रास्ते ना मोड़ना,<br>
+जो भी मन में हो वो हसीं सपना ना तोड़ना।<br><br>
+
+कदम-कदम पर मिलेंगी मुश्किलें आपको,<br>
+बस सितारे चुनने के लिए कभी ज़मीन ना छोड़ना।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 4 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+वक्त से लड़कर जो अपना नसीब बदल दे,<br>
+इंसान वही जो अपनी तकदीर बदल दे।<br><br>
+
+कल क्या होगा कभी इस बात की फिक्र मत करो,<br>
+क्या पता कल वक्त खुद अपनी तस्वीर बदल दे।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 5 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+हौसले के तरकश में कोशिश का वो तीर ज़िंदा रख,<br>
+हार जाए चाहे ज़िन्दगी में सब कुछ मगर जीतने की उम्मीद ज़िंदा रख।<br><br>
+
+मुश्किलें तो आएंगी हर कदम पर तुम्हें रोकने के लिए,<br>
+तू बस अपनी रगों में बहता हुआ वो खून गर्म रख।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 6 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+राह संघर्ष की जो चलता है वही संसार को बदलता है,<br>
+जिसने रातों से है जंग जीती सुबह सूर्य बनकर वही चमकता है।<br><br>
+
+शुरुआत में हर रास्ता मुश्किल ही लगेगा तुमको,<br>
+पर लगातार चलने वाला ही अपनी मंजिल तक पहुंचता है।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 7 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+नाकामयाबी तो बस एक शुरुआत है संभलने की,<br>
+एक नई उमंग के साथ फिर से आगे बढ़ने की।<br><br>
+
+गिरते हैं शहसवार ही मैदान-ए-जंग में,<br>
+वही तो सीखते हैं कला गिरकर फिर से संभलने की।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 8 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+अपनी किस्मत का सूरज खुद ही चमकाना होगा,<br>
+अंधेरों से लड़कर तुम्हें आगे आना होगा।<br><br>
+
+बैठे-बैठे तो सिर्फ ख्वाब देखे जाते हैं,<br>
+मंजिल पानी है तो मेहनत का पसीना बहाना होगा।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 9 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+जो मुस्कुरा रहा है उसे दर्द ने पाला होगा,<br>
+जो चल रहा है उसके पांव में ज़रूर छाला होगा।<br><br>
+
+बिना संघर्ष के चमक नहीं मिलती इस ज़िन्दगी में,<br>
+जो जलेगा दीया उसी के घर में उजाला होगा।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 10 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+तू मत रुक कभी इन तूफानों के डर से,<br>
+तेरा हौसला बड़ा होना चाहिए हर एक डर से।<br><br>
+
+निकल पड़ा है जो तू अपनी नई राह पर,<br>
+तो वापस मुड़कर मत देखना कभी अपने घर की तरफ।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 11 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+परिंदों को मंजिल मिलेगी यकीनन यह फैले हुए उनके पर बोलते हैं,<br>
+वो लोग रहते हैं खामोश अक्सर ज़माने में जिनके हुनर बोलते हैं।<br><br>
+
+तुम भी खामोशी से अपनी मेहनत करते जाओ,<br>
+एक दिन तुम्हारी कामयाबी के किस्से हर घर बोलते हैं।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 12 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+ख्वाबों को पूरा करने के लिए दिल में आग होनी चाहिए,<br>
+दुनिया की हर मुश्किल से लड़ने की साख होनी चाहिए।<br><br>
+
+लोग तो रोकेंगे तुम्हें हर मोड़ पर आकर,<br>
+पर तुम्हारे इरादों में जीतने की वो धाक होनी चाहिए।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 13 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+वक़्त का ये पहिया तो हर पल चलता रहेगा,<br>
+तेरा हौसला ही तुझे हर मुश्किल से निकालता रहेगा।<br><br>
+
+मत सोच कि तू अकेला है इस बड़े सफ़र में,<br>
+तेरा आत्मविश्वास ही तेरी ताकत बनकर बदलता रहेगा।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 14 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+चट्टानों को चीरकर जो अपना रास्ता बनाते हैं,<br>
+वही इतिहास के पन्नों में अपना नाम लिखाते हैं।<br><br>
+
+बहाने बनाने वाले तो सिर्फ भीड़ का हिस्सा बनते हैं,<br>
+और मेहनत करने वाले भीड़ में भी पहचान बनाते हैं।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 15 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+हार और जीत तो बस तुम्हारी सोच पर निर्भर करती है,<br>
+मान लो तो हार होगी और ठान लो तो जीत होगी।<br><br>
+
+ज़िन्दगी के इस खेल में कभी हिम्मत मत हारना,<br>
+क्योंकि तुम्हारी मेहनत ही तुम्हारी अगली तकदीर होगी।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<div class="shayari-card">
+<div class="shayari-text">
+सपने वो नहीं जो नींद में आते हैं,<br>
+सपने वो हैं जो नींद उड़ा देते हैं...
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+</div>
+
+<div class="shayari-card">
+<div class="shayari-text">
+हवा में ताश का घर नहीं बनता,<br>
+रोने से बिगड़ा मुकद्दर नहीं बनता...
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+</div>
+
+</div>
+
+<!-- Love -->
+
+<div id="love" class="shayari-box">
+
+
+<!-- 1 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+तुम्हारी मुस्कान से ही शुरू मेरी हर सुबह होती है,<br>
+दिल की हर एक धड़कन बस तुम्हारे नाम रोती है।<br><br>
+
+तुम पास रहो या दूर, इस दिल को फर्क नहीं पड़ता,<br>
+मेरी रूह तो हर पल बस तुम्हारे ही पास होती है।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 2 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+न जाने कैसा ये अजीब सा अहसास है,<br>
+दूर होकर भी तू हर पल मेरे दिल के पास है।<br><br>
+
+ज़िन्दगी में वैसे तो बहुत से लोग हैं मेरे,<br>
+पर तेरी एक झलक ही मेरे लिए सबसे ख़ास है।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 3 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+तेरी आँखों के समंदर में डूब जाने को जी चाहता है,<br>
+तेरी धड़कन में खुद को छुपाने को जी चाहता है।<br><br>
+
+मोहब्बत इस कदर हो गई है तुमसे ऐ सनम,<br>
+कि हर जनम बस तुम्हारा ही होने को जी चाहता है।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 4 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+खुशबू बनकर तेरी सांसों में समा जाएंगे,<br>
+सुकून बनकर तेरे दिल में उतर जाएंगे।<br><br>
+
+कोशिश तो करके देखना हमें भुलाने की,<br>
+हम बनकर आंसू तेरी आँखों से छलक आएंगे।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 5 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+लफ़्ज़ों में बयां न हो पाए वो चाहत हो तुम,<br>
+इस बेचैन दिल को जो सुकून दे वो राहत हो तुम।<br><br>
+
+खुदा से और क्या मांगू अपनी ज़िन्दगी के लिए,<br>
+मेरे जीने की इकलौती और आखिरी हसरत हो तुम।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 6 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+तेरा नाम इस दिल पर सुनहरे अक्षरों में लिखा है,<br>
+मैंने तो हर दुआ में बस तुझको ही माँगा है।<br><br>
+
+ज़माने की कोई भी ताकत हमें जुदा नहीं कर सकती,<br>
+क्योंकि मेरी रूह ने तेरी रूह से नाता जोड़ा है।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 7 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+तुम्हारी एक झलक ही मेरे चेहरे की मुस्कान है,<br>
+तुमसे ही मेरी ज़िन्दगी, तुम ही मेरी जान हो।<br><br>
+
+अब और कुछ पाने की आरज़ू नहीं रही दिल में,<br>
+तुम मिल गए तो समझो मिल गया सारा जहान है।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 8 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+धड़कन को तुम्हारी आवाज़ से प्यार है,<br>
+इस दिल को तुम्हारे दीदार का इंतज़ार है।<br><br>
+
+तुम मानो या न मानो मेरी इस पाक मोहब्बत को,<br>
+पर हमें तो तुमसे हद से ज्यादा और बेइंतहा प्यार है।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 9 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+तारों की महफ़िल में भी बस चांद की बात होती है,<br>
+जब तुम साथ हो तो पतझड़ में भी बरसात होती है।<br><br>
+
+यूं तो अकेले गुज़र जाती है पूरी ज़िन्दगी मेरी,<br>
+पर तुम्हारे आने से ही मेरी खुशियों की शुरुआत होती है।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 10 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+तुम्हारी सादगी ने हमें इस कदर दीवाना बना दिया,<br>
+बेगाने से इस दिल को तुम्हारा आशियाना बना दिया।<br><br>
+
+हम तो सिर्फ ज़िन्दगी गुज़ार रहे थे इस दुनिया में,<br>
+तुमने आकर हमें जीने का असली बहाना सिखा दिया।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 11 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+मेरी हर ख़्वाहिश बस तुम पर आकर ठहर जाती है,<br>
+तेरी एक मुस्कान मेरा पूरा दिन संवार जाती है।<br><br>
+
+मोहब्बत तो बहुत लोग करते हैं इस दुनिया में,<br>
+पर मेरी मोहब्बत सीधे रूह को छूकर निकल जाती है।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 12 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+तुम्हारी यादों की महक इस दिल में हमेशा रहती है,<br>
+मेरी हर धड़कन बस तुम्हारा ही नाम लेती है।<br><br>
+
+तुम मानो या न मानो मेरा ये सच्चा प्यार,<br>
+पर ये ज़िन्दगी हर पल तुम्हारी वफ़ा की गवाही देती है।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 13 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+चाहत ऐसी कि पूरी ज़िन्दगी तुम्हारे नाम कर दूँ,<br>
+अपनी हर एक ख़ुशी तुम्हारे कदमों में तमाम कर दूँ।<br><br>
+
+मिल जाओ अगर तुम मुझे इस जनम में मेरे हमसफ़र,<br>
+तो खुदा की कसम, मैं खुदा का भी शुक्रिया सरेआम कर दूँ।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 14 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+न कोई ज़िद है और न ही कोई गुरूर है हमें,<br>
+बस तुम्हें पाने का एक अजीब सा सुरूर है हमें।<br><br>
+
+इश्क का रंग चढ़ा है कुछ इस तरह रूह पर,<br>
+कि हर चेहरे में बस तुम्हारा ही नूर दिखता है हमें।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<!-- 15 -->
+<div class="shayari-card">
+
+<div class="shayari-text">
+हाथों की लकीरों में तुम हो या न हो,<br>
+पर इस दिल की हर धड़कन में बस तुम ही हो।<br><br>
+
+ज़िन्दगी के सफ़र में चाहे राहें बदल जाएं,<br>
+पर मेरी आखिरी सांस तक मेरी मोहब्बत बस तुम ही हो।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+<div class="shayari-card">
+<div class="shayari-text">
+तुम्हें सोचते सोचते,<br>
+हम खुद से भी खूबसूरत लगने लगे...
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+</div>
+
+<div class="shayari-card">
+<div class="shayari-text">
+ना चाँद चाहिए ना फलक चाहिए,<br>
+मुझे बस तेरी एक झलक चाहिए...
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+</div>
+
+<div class="shayari-card">
+<div class="shayari-text">
+तेरे साथ बिताया हर पल,<br>
+मेरी जिंदगी का सबसे खूबसूरत हिस्सा है...
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+</div>
+
+</div>
+
+<footer>
+Created with pure passion Straight from the heart. ❤️
+</footer>
+<footer>
+
+<p style="font-size:18px; color:#888;">
+Crafted With ❤️ By
+<span style="color:#ff4d6d; font-weight:bold; letter-spacing:2px;">
+MAHIR
+</span>
+</p>
+
+</footer>
+<script>
+
+function showShayari(type){
+
+document.getElementById("broken").style.display="none";
+document.getElementById("motivational").style.display="none";
+document.getElementById("love").style.display="none";
+
+document.getElementById(type).style.display="block";
+
+}
+
+/* Copy */
+
+function copyText(button){
+
+let text=button.parentElement.parentElement.querySelector(".shayari-text").innerText;
+
+navigator.clipboard.writeText(text);
+
+button.innerText="Copied ✓";
+
+setTimeout(()=>{
+button.innerText="Copy";
+},2000);
+
+}
+
+/* WhatsApp */
+
+function shareWhatsApp(button){
+
+let text=button.parentElement.parentElement.querySelector(".shayari-text").innerText;
+
+let url="https://wa.me/?text="+encodeURIComponent(text);
+
+window.open(url,"_blank");
+
+}
+
+/* Search */
+
+function searchShayari(){
+
+let input=document.getElementById("searchInput").value.toLowerCase();
+
+let cards=document.querySelectorAll(".shayari-card");
+
+cards.forEach(card=>{
+
+let text=card.innerText.toLowerCase();
+
+if(text.includes(input)){
+card.style.display="block";
+}else{
+card.style.display="none";
+}
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
