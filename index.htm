@@ -366,6 +366,10 @@ footer{
 <span>❤️ Love</span>
 </div>
 
+  <div onclick="showShayari('attitude')" class="option">
+<span>😎 ATTITUDE </span>
+</div>
+
 </div>
   <p> 👇</p>
 
@@ -1780,6 +1784,29 @@ footer{
 
 </div>
 
+
+
+
+
+  
+  <div id="attitude" class="shayari-box">
+
+<div class="shayari-card">
+
+<div class="shayari-text">
+हम अपनी अलग पहचान रखते हैं,<br>
+तभी तो दुश्मन भी हमें सलाम करते हैं।
+</div>
+
+<div class="card-buttons">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>
+<button class="share-btn" onclick="shareWhatsApp(this)">WhatsApp</button>
+</div>
+
+</div>
+
+</div>
+
 <footer>
 Created with pure passion Straight from the heart. ❤️
 </footer>
@@ -1800,6 +1827,7 @@ function showShayari(type){
 document.getElementById("broken").style.display="none";
 document.getElementById("motivational").style.display="none";
 document.getElementById("love").style.display="none";
+  document.getElementById("attitude").style.display="none";
 
 document.getElementById(type).style.display="block";
 
