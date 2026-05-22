@@ -334,7 +334,105 @@ font-weight:bold;
 .insta-link:hover{
 color:white !important;
 }
+
+.like-btn{
+all:unset;
+
+display:inline-flex !important;
+align-items:center !important;
+justify-content:center !important;
+
+padding:12px 24px !important;
+margin:8px !important;
+
+border-radius:50px !important;
+
+cursor:pointer !important;
+
+font-size:16px !important;
+font-weight:700 !important;
+font-family:'Poppins',sans-serif !important;
+
+color:white !important;
+
+background:linear-gradient(
+135deg,
+#ff0844,
+#ff4d6d,
+#ff758c
+) !important;
+
+background-size:300% 300% !important;
+
+animation:gradientMove 5s ease infinite !important;
+
+box-shadow:
+0 0 12px rgba(255,77,109,0.4),
+0 0 25px rgba(255,77,109,0.2) !important;
+
+transition:0.35s !important;
+
+position:relative !important;
+
+overflow:hidden !important;
 }
+
+.like-btn span{
+margin-left:8px !important;
+font-weight:bold !important;
+color:white !important;
+}
+
+.like-btn:hover{
+transform:translateY(-4px) scale(1.07) !important;
+
+box-shadow:
+0 0 18px rgba(255,77,109,0.75),
+0 0 35px rgba(255,77,109,0.35) !important;
+}
+
+.like-btn:active{
+transform:scale(0.90) !important;
+}
+
+.like-btn::before{
+content:'' !important;
+
+position:absolute !important;
+
+top:-50% !important;
+left:-60% !important;
+
+width:220% !important;
+height:220% !important;
+
+background:rgba(255,255,255,0.12) !important;
+
+transform:rotate(25deg) !important;
+
+transition:0.8s !important;
+}
+
+.like-btn:hover::before{
+left:130% !important;
+}
+
+@keyframes gradientMove{
+
+0%{
+background-position:0% 50%;
+}
+
+50%{
+background-position:100% 50%;
+}
+
+100%{
+background-position:0% 50%;
+}
+
+}
+}}
 
 </style>
 </head>
@@ -2066,22 +2164,44 @@ target="_blank">
 </div>
 </footer>
 
-<script>
+<script type="module">
 
-function showShayari(type){
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+import {
+getFirestore,
+doc,
+getDoc,
+setDoc,
+onSnapshot
+}
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyB1ZuEDH495rgRCvyLS0J4GLSu_S4TmFlE",
+authDomain: "sayari-96bab.firebaseapp.com",
+projectId: "sayari-96bab",
+storageBucket: "sayari-96bab.firebasestorage.app",
+messagingSenderId: "277455719869",
+appId: "1:277455719869:web:844a8634a441146a4fd6d4",
+measurementId: "G-6QLFPQHPPK"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.showShayari = function(type){
 
 document.getElementById("broken").style.display="none";
 document.getElementById("motivational").style.display="none";
 document.getElementById("love").style.display="none";
-  document.getElementById("attitude").style.display="none";
+document.getElementById("attitude").style.display="none";
 
 document.getElementById(type).style.display="block";
 
 }
 
-/* Copy */
-
-function copyText(button){
+window.copyText = function(button){
 
 let text=button.parentElement.parentElement.querySelector(".shayari-text").innerText;
 
@@ -2095,9 +2215,7 @@ button.innerText="Copy";
 
 }
 
-/* WhatsApp */
-
-function shareWhatsApp(button){
+window.shareWhatsApp = function(button){
 
 let text=button.parentElement.parentElement.querySelector(".shayari-text").innerText;
 
@@ -2107,9 +2225,7 @@ window.open(url,"_blank");
 
 }
 
-/* Search */
-
-function searchShayari(){
+window.searchShayari = function(){
 
 let input=document.getElementById("searchInput").value.toLowerCase();
 
@@ -2128,6 +2244,98 @@ card.style.display="none";
 });
 
 }
+
+
+// ❤️ LIKE SYSTEM
+
+const cards=document.querySelectorAll('.shayari-card');
+
+cards.forEach(async(card,index)=>{
+
+const id='shayari-'+index;
+
+const buttons=card.querySelector('.card-buttons');
+
+const likeBtn=document.createElement('button');
+
+likeBtn.className='like-btn';
+
+likeBtn.style.background='rgba(255,255,255,0.06)';
+likeBtn.style.backdropFilter='blur(10px)';
+likeBtn.style.border='1px solid rgba(255,77,109,0.35)';
+likeBtn.style.color='#ff4d6d';
+likeBtn.style.borderRadius='50px';
+likeBtn.style.padding='12px 24px';
+likeBtn.style.fontSize='16px';
+likeBtn.style.fontWeight='bold';
+likeBtn.style.cursor='pointer';
+likeBtn.style.margin='8px';
+likeBtn.style.transition='0.35s';
+likeBtn.style.boxShadow='0 0 15px rgba(255,77,109,0.15)';
+
+
+
+likeBtn.innerHTML='❤️ <span>0</span>';
+
+buttons.appendChild(likeBtn);
+
+const likeRef=doc(db,'likes',id);
+
+const snap=await getDoc(likeRef);
+
+if(!snap.exists()){
+
+await setDoc(likeRef,{
+count:0
+});
+
+}
+
+onSnapshot(likeRef,(docSnap)=>{
+
+if(docSnap.exists()){
+
+likeBtn.querySelector('span').innerText=docSnap.data().count;
+
+}
+
+});
+
+likeBtn.addEventListener('click',async()=>{
+
+likeBtn.classList.add('heart-pop');
+
+likeBtn.innerHTML='💖 Liked';
+
+setTimeout(()=>{
+
+likeBtn.classList.remove('heart-pop');
+
+},600);
+const current=await getDoc(likeRef);
+
+let total=current.data().count || 0;
+
+await setDoc(likeRef,{
+count:total+1
+});
+
+setTimeout(()=>{
+
+likeBtn.innerHTML='❤️ <span>'+(total+1)+'</span>';
+
+},700);
+});
+likeBtn.onmouseleave=()=>{
+
+likeBtn.style.transform='scale(1)';
+likeBtn.style.background='rgba(255,255,255,0.06)';
+likeBtn.style.color='#ff4d6d';
+likeBtn.style.boxShadow='0 0 15px rgba(255,77,109,0.15)';
+
+}
+
+});
 
 </script>
 
