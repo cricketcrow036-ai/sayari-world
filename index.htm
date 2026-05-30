@@ -30,12 +30,25 @@
 
 body{
     font-family:'Poppins',sans-serif;
-    background:linear-gradient(135deg,#050505,#0d0d0d,#151515);
+
+    background:
+    linear-gradient(
+    135deg,
+    rgba(0,0,0,0.88),
+    rgba(10,10,10,0.92),
+    rgba(20,20,20,0.95)
+    ),
+
+    url('https://images.unsplash.com/photo-1511300636408-a63a89df3482');
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+
     color:white;
     overflow-x:hidden;
     text-align:center;
 }
-
 /* Soft Animated Background */
 
 body::before{
@@ -239,22 +252,60 @@ header{
 /* Cards */
 
 .shayari-card{
-    max-width:760px;
-    margin:25px auto;
-    padding:30px;
-    border-radius:25px;
-    background:rgba(255,255,255,0.03);
-    backdrop-filter:blur(8px);
-    border:1px solid rgba(255,255,255,0.05);
-    box-shadow:0 0 15px rgba(255,77,109,0.08);
-    transition:0.4s;
+
+position:relative;
+
+max-width:760px;
+margin:25px auto;
+padding:30px;
+
+border-radius:25px;
+
+overflow:hidden;
+
+background-size:cover;
+background-position:center;
+
+border:1px solid rgba(255,255,255,0.08);
+
+box-shadow:0 0 20px rgba(0,0,0,0.35);
+
+transition:0.4s;
+
+isolation:isolate;
+
 }
+
+/* DARK OVERLAY */
+
+.shayari-card::before{
+
+content:'';
+
+position:absolute;
+
+inset:0;
+
+background:linear-gradient(
+to bottom,
+rgba(0,0,0,0.45),
+rgba(0,0,0,0.70)
+);
+
+z-index:-1;
+
+}
+
+/* HOVER EFFECT */
 
 .shayari-card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 0 20px rgba(255,77,109,0.18);
-}
 
+transform:translateY(-6px) scale(1.01);
+
+box-shadow:
+0 0 25px rgba(255,77,109,0.25);
+
+}
 .shayari-text{
     font-family:'Great Vibes',cursive;
     font-size:34px;
@@ -431,11 +482,23 @@ background-position:100% 50%;
 background-position:0% 50%;
 }
 
-}
-}}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </style>
-</head>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script></head>
 
 <body>
 
@@ -2225,6 +2288,8 @@ window.open(url,"_blank");
 
 }
 
+
+
 window.searchShayari = function(){
 
 let input=document.getElementById("searchInput").value.toLowerCase();
@@ -2240,6 +2305,8 @@ card.style.display="block";
 }else{
 card.style.display="none";
 }
+
+
 
 });
 
@@ -2334,6 +2401,215 @@ likeBtn.style.color='#ff4d6d';
 likeBtn.style.boxShadow='0 0 15px rgba(255,77,109,0.15)';
 
 }
+
+
+
+const cards=document.querySelectorAll('.shayari-card');
+
+const topicImages={
+
+broken:[
+
+'https://images.unsplash.com/photo-1516528387618-afa90b13e000?auto=format&fit=crop&w=900&q=80', // lonely road
+
+'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80', // dark mountain
+
+'https://images.unsplash.com/photo-1511300636408-a63a89df3482?auto=format&fit=crop&w=900&q=80', // rainy city
+
+'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=900&q=80', // lonely forest
+
+'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=80', // dark lake
+
+'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80' // sad clouds
+
+],
+
+love:[
+
+'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80', // beach sunset
+
+'https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=80', // flowers
+
+'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=900&q=80', // romantic garden
+
+'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=80', // heart lights
+
+'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=900&q=80' // love sky
+
+],
+
+motivational:[
+
+'https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80', // sunrise mountain
+
+'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80', // success peak
+
+'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80', // working grind
+
+'https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=900&q=80', // motivation road
+
+'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80', // teamwork success
+
+'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=900&q=80' // dream forest
+
+
+],
+
+attitude:[
+
+'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80', // sports car
+
+'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1200&q=80', // dark city
+
+'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80', // luxury car
+
+'https://images.unsplash.com/photo-1518562180175-34a163b1a9a6?auto=format&fit=crop&w=1200&q=80', // lion vibe
+
+'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80', // king dark
+
+'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1200&q=80', // night road
+
+'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80', // black car
+
+'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80', // supercar
+
+'https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1200&q=80', // dark aesthetic
+
+'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80' // powerful vibe
+
+]
+
+};
+
+Object.keys(topicImages).forEach(topic=>{
+
+const section=document.getElementById(topic);
+
+const cards=section.querySelectorAll('.shayari-card');
+
+cards.forEach((card,index)=>{
+
+const imgs=topicImages[topic];
+
+card.style.backgroundImage=
+`linear-gradient(
+rgba(0,0,0,0.55),
+rgba(0,0,0,0.55)
+),
+url(${imgs[index % imgs.length]})`;
+
+card.style.backgroundSize='cover';
+
+card.style.backgroundPosition='center';
+
+card.style.backgroundRepeat='no-repeat';
+
+});
+
+});
+
+
+cards.forEach((card,index)=>{
+
+card.style.backgroundImage =
+`linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
+url(${images[index % images.length]})`;
+
+card.style.backgroundSize = "cover";
+
+card.style.backgroundPosition = "center";
+
+card.style.backgroundRepeat = "no-repeat";
+
+});
+
+
+
+
+
+
+
+
+
+});
+
+// AUTO DOWNLOAD BUTTON
+
+document.querySelectorAll('.card-buttons').forEach(buttons=>{
+
+const downloadBtn=document.createElement('button');
+
+downloadBtn.innerText='⬇ Download';
+
+// STYLE
+
+downloadBtn.style.padding='12px 24px';
+downloadBtn.style.margin='8px';
+downloadBtn.style.border='none';
+downloadBtn.style.borderRadius='50px';
+downloadBtn.style.cursor='pointer';
+
+downloadBtn.style.fontSize='16px';
+downloadBtn.style.fontWeight='bold';
+downloadBtn.style.fontFamily='Poppins,sans-serif';
+
+downloadBtn.style.color='white';
+
+downloadBtn.style.background='linear-gradient(135deg,#ff4d6d,#ff758c)';
+downloadBtn.style.boxShadow='0 0 15px rgba(0,114,255,0.5)';
+
+downloadBtn.style.transition='0.35s';
+
+// HOVER EFFECT
+
+downloadBtn.onmouseenter=()=>{
+
+downloadBtn.style.transform='translateY(-4px) scale(1.07)';
+
+downloadBtn.style.boxShadow='0 0 25px rgba(0,198,255,0.9)';
+
+}
+
+downloadBtn.onmouseleave=()=>{
+
+downloadBtn.style.transform='scale(1)';
+
+downloadBtn.style.boxShadow='0 0 15px rgba(0,114,255,0.5)';
+
+}
+
+// DOWNLOAD
+
+downloadBtn.onclick=function(e){
+
+e.stopPropagation();
+
+const card=this.closest('.shayari-card');
+
+const allButtons=card.querySelector('.card-buttons');
+
+// hide buttons
+allButtons.style.visibility='hidden';
+html2canvas(card,{
+useCORS:true,
+scale:2
+}).then(canvas=>{
+
+const link=document.createElement('a');
+
+link.download='shayari-world.png';
+
+link.href=canvas.toDataURL('image/png');
+
+link.click();
+
+// show buttons again
+allButtons.style.visibility='visible';
+});
+
+};
+
+buttons.appendChild(downloadBtn);
 
 });
 
